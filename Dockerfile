@@ -7,7 +7,7 @@ WORKDIR /build
 RUN apk add --no-cache cargo && \
     wget -O mdbook.tar.gz "https://github.com/rust-lang/mdBook/archive/v$MDBOOK_VERSION.tar.gz" && \
     tar -xzvf mdbook.tar.gz && \
-    cd /mdBook* && cargo build --release && \
+    cd /build/mdBook* && cargo build --release && \
     mv /build/mdBook*/target/release/mdbook /build/mdbook
 
 ########## ########## ##########
