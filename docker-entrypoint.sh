@@ -9,9 +9,6 @@ if [ $CONTENT_LENGTH == "0" ] || [ "$CONTENT" == ".git" ]; then
 
     # INIT NEW BOOK
     printf 'y\n \n' | mdbook init --force --theme
-    
-    # MOVE THEME FOLDER TO CORRECT LOCATION
-    mv src/theme .
 fi
 
 # IF NO FIRST ARG SUPPLIED OR FIRST ARG IS "serve"
