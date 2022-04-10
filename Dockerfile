@@ -1,6 +1,6 @@
-FROM alpine:3.15.0 AS builder
+FROM alpine:3.15.4 AS builder
 
-ARG MDBOOK_VERSION=0.4.13
+ARG MDBOOK_VERSION=0.4.17
 
 WORKDIR /build
 
@@ -12,7 +12,7 @@ RUN apk add --no-cache cargo && \
 
 ########## ########## ##########
 
-FROM alpine:3.15.0
+FROM alpine:3.15.4
 
 COPY --from=builder /build/mdbook /usr/local/bin/mdbook
 COPY docker-entrypoint.sh /docker-entrypoint.sh
@@ -25,3 +25,4 @@ USER mdbook
 VOLUME ["/book"]
 WORKDIR /book
 ENTRYPOINT ["/docker-entrypoint.sh"]
+EXPOSE 3000
