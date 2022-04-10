@@ -7,12 +7,16 @@ on:
     branches: [ main ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/pmjohann/mdbook:latest && docker push ghcr.io/pmjohann/mdbook:latest
+      - name: "Build:checkout"
+        uses: actions/checkout@v2
+      - name: 'Build:dockerimage'
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: pmjohann
+          password: ${{ secrets.PAT }}
+          repository: pmjohann/mdbook
+          tags: latest
