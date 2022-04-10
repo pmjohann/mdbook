@@ -10,9 +10,15 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout sources
         uses: actions/checkout@v2
-      - name: build-push
+      - name: Docker login
+        uses: docker/login-action@v1 
+        with:
+          username: pmjohann
+          password: ${{ secrets.PAT }}
+      - name: Docker build & push
         uses: docker/build-push-action@v2
         with:
-          tags: pmjohann/mdbook:test
+          push: true
+          tags: ghcr.io/pmjohann/mdbook:latest
